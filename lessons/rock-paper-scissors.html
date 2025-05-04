@@ -5,18 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Booleans</title>
     <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
       body {
         background-color: rgb(255, 237, 215);
-        margin: 0;
         font-family: Arial, sans-serif;
+        padding: 20px;
       }
 
       .header__title {
         text-align: center;
-        font-size: 48px;
+        font-size: clamp(28px, 6vw, 48px);
         font-weight: 800;
         color: #333;
-        margin: 30px 0;
+        margin-bottom: 30px;
         text-transform: uppercase;
         letter-spacing: 2px;
         background: linear-gradient(90deg, #404dff, #08eb00);
@@ -26,42 +32,30 @@
         animation: fadeInDown 1s ease-in-out;
       }
 
-      button {
-        cursor: pointer;
-      }
-
       .rps__container {
+        display: flex;
         justify-content: center;
         align-items: center;
-        display: flex;
         gap: 10px;
         flex-wrap: wrap;
-        padding: 10px;
       }
 
       .rps__button {
         color: white;
         border: 1px solid #ccc;
         border-radius: 50%;
-        width: 90px;
-        height: 90px;
+        width: 80px;
+        height: 80px;
         transition: all 0.2s ease;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 10px;
-      }
-
-      .rps__button img {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
       }
 
       .rps__button:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
         transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
       }
 
       .rps__button:active {
@@ -79,55 +73,65 @@
         background-color: palevioletred;
       }
 
+      .rps__button--rock:hover {
+        background-color: rgb(252, 97, 41);
+      }
+      .rps__button--paper:hover {
+        background-color: rgb(82, 207, 248);
+      }
+      .rps__button--scissors:hover {
+        background-color: rgb(243, 70, 127);
+      }
+
       .result__section {
         display: flex;
         flex-direction: column;
         align-items: center;
         margin-top: 30px;
         gap: 20px;
-        padding: 0 10px;
       }
 
       #result {
-        font-size: 20px;
+        font-size: clamp(16px, 4vw, 22px);
         font-weight: bold;
         color: #333;
         background-color: #ffffff;
-        padding: 15px 20px;
+        padding: 15px;
         border-radius: 12px;
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         width: 100%;
-        max-width: 400px;
+        max-width: 500px;
         text-align: center;
       }
 
       .scoreboard {
         display: flex;
-        flex-wrap: wrap;
         justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
         gap: 15px;
         background-color: #f0f0f0;
         padding: 20px;
         border-radius: 15px;
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-        max-width: 400px;
         width: 100%;
+        max-width: 500px;
       }
 
       .scoreboard p {
-        font-size: 18px;
+        font-size: clamp(14px, 4vw, 20px);
         font-weight: bold;
         color: #333;
         background-color: #ffffff;
-        padding: 10px 15px;
+        padding: 10px 20px;
         border-radius: 10px;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-        flex: 1 1 100px;
         text-align: center;
+        flex: 1 1 120px;
       }
 
       .reset__button {
-        padding: 10px 20px;
+        padding: 12px 24px;
         font-size: 18px;
         background-color: #ff4d4d;
         color: white;
@@ -157,26 +161,6 @@
       }
 
       @media (max-width: 480px) {
-        .header__title {
-          font-size: 28px;
-        }
-
-        #result {
-          font-size: 16px;
-          padding: 10px;
-        }
-
-        .scoreboard {
-          flex-direction: column;
-          gap: 10px;
-          padding: 15px;
-        }
-
-        .scoreboard p {
-          font-size: 16px;
-          padding: 8px;
-        }
-
         .rps__button {
           width: 70px;
           height: 70px;
@@ -189,21 +173,21 @@
 
     <div class="rps__container">
       <button class="rps__button rps__button--rock" onclick="play('rock')">
-        <img src="images/rock.png" alt="Rock" />
+        <img src="images/rock.png" alt="Rock" width="50" height="50" />
       </button>
       <button class="rps__button rps__button--paper" onclick="play('paper')">
-        <img src="images/paper.png" alt="Paper" />
+        <img src="images/paper.png" alt="Paper" width="50" height="50" />
       </button>
       <button
         class="rps__button rps__button--scissors"
         onclick="play('scissors')"
       >
-        <img src="images/scissors.png" alt="Scissors" />
+        <img src="images/scissors.png" alt="Scissors" width="50" height="50" />
       </button>
     </div>
 
     <div class="result__section">
-      <p id="result">Result: <span id="result-text"></span></p>
+      <div id="result"><span id="result-text"></span></div>
       <div class="scoreboard">
         <p id="player-score">Wins:</p>
         <p id="computer-score">Loses:</p>
@@ -239,7 +223,7 @@
           result = `The opponent chose ${computerChoice}. You won!`;
           score.playerScore++;
         } else {
-          result = `The opponent chose ${computerChoice}. You lost!`;
+          result = `The opponent chose ${computerChoice}. You lost.`;
           score.computerScore++;
         }
 
@@ -275,11 +259,7 @@
       }
 
       function resetScore() {
-        score = {
-          playerScore: 0,
-          computerScore: 0,
-          drawScore: 0,
-        };
+        score = { playerScore: 0, computerScore: 0, drawScore: 0 };
         document.getElementById("result-text").textContent = "";
         localStorage.setItem("score", JSON.stringify(score));
         updateScoreboard();
