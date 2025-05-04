@@ -7,7 +7,11 @@
     <style>
       body {
         background-color: rgb(255, 237, 215);
+        margin: 0;
+        padding: 0;
+        font-family: sans-serif;
       }
+
       .header__title {
         text-align: center;
         font-size: 48px;
@@ -27,16 +31,13 @@
         cursor: pointer;
       }
 
-      .rps__header {
-        margin-bottom: 30px;
-        text-align: center;
-      }
       .rps__container {
         justify-content: center;
         align-items: center;
         display: flex;
         gap: 10px;
       }
+
       .rps__button {
         color: white;
         border: 1px solid #ccc;
@@ -48,13 +49,15 @@
       }
 
       .rps__button:hover {
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12); /* чуть сильнее при наведении */
-        transform: translateY(-2px); /* небольшой подъём */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
       }
-.rps__button:active {
-  transform: translateY(4px);
-  box-shadow: 0 0 #2d7a36;
-}
+
+      .rps__button:active {
+        transform: translateY(4px);
+        box-shadow: 0 0 #2d7a36;
+      }
+
       .rps__button--rock {
         background-color: coral;
       }
@@ -62,6 +65,7 @@
       .rps__button--paper {
         background-color: lightblue;
       }
+
       .rps__button--scissors {
         background-color: palevioletred;
       }
@@ -73,27 +77,31 @@
       .rps__button--paper:hover {
         background-color: rgb(82, 207, 248);
       }
+
       .rps__button--scissors:hover {
         background-color: rgb(243, 70, 127);
       }
-.result__section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 40px;
-  gap: 20px;
-}
-#result {
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  background-color: #ffffff;
-  padding: 15px 30px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-width: 300px;
-  margin:40px 350px;
-}
+
+      .result__section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 40px;
+        gap: 20px;
+      }
+
+      #result {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        background-color: #ffffff;
+        padding: 15px 30px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        min-width: 300px;
+        margin: 40px auto;
+      }
+
       .scoreboard {
         display: flex;
         justify-content: center;
@@ -105,24 +113,20 @@
         box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
         margin: 50px auto;
         width: fit-content;
+        flex-wrap: wrap;
       }
-      .scoreboard p {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 60px;
-  min-width: 180px; /* увеличена ширина, чтобы поместился текст результата */
-  text-align: center;
-  transition: all 0.3s ease;
-}
 
+      .scoreboard p {
+        font-size: 20px;
+        font-weight: bold;
+        color: #333;
+        background-color: #ffffff;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        min-width: 180px;
+      }
 
       .reset__button {
         padding: 10px 20px;
@@ -139,7 +143,7 @@
       }
 
       .reset__button:hover {
-        transform: translateY(-1px); /* небольшой подъём */
+        transform: translateY(-1px);
         background-color: #fa3939;
       }
 
@@ -154,50 +158,71 @@
         }
       }
 
-      @keyframes slideInLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
+      @media (max-width: 768px) {
+        .header__title {
+          font-size: 32px;
+          margin: 20px 0;
+        }
 
-#result-text.slide-in {
-  animation: slideInLeft 0.4s ease-out;
-}
+        .rps__container {
+          flex-direction: column;
+          gap: 15px;
+        }
 
+        .rps__button {
+          width: 80px;
+          height: 80px;
+        }
 
+        .rps__button img {
+          width: 60px;
+          height: 60px;
+        }
+
+        #result {
+          font-size: 18px;
+          padding: 10px 20px;
+          margin: 20px auto;
+          min-width: auto;
+        }
+
+        .scoreboard {
+          flex-direction: column;
+          gap: 15px;
+          padding: 15px 20px;
+        }
+
+        .scoreboard p {
+          min-width: auto;
+          width: 100%;
+          text-align: center;
+        }
+
+        .reset__button {
+          font-size: 16px;
+          margin: 30px auto;
+        }
+      }
     </style>
   </head>
   <body>
     <h1 class="header__title">Rock Paper Scissors</h1>
 
     <div class="rps__container">
-      <button class="rps__button rps__button--rock"  onclick="play('rock')">
+      <button class="rps__button rps__button--rock" onclick="play('rock')">
         <img src="images/rock.png" alt="Rock" width="80" height="80" />
       </button>
-      <button class="rps__button rps__button--paper"  onclick="play('paper')">
+      <button class="rps__button rps__button--paper" onclick="play('paper')">
         <img src="images/paper.png" alt="paper" width="80" height="80" />
       </button>
       <button
-        class="rps__button rps__button--scissors" 
+        class="rps__button rps__button--scissors"
         onclick="play('scissors')"
       >
         <img src="images/scissors.png" alt="Scissors" width="80" height="80" />
       </button>
-
-
-
-     
-
-
-
     </div>
 
-    
     <div class="results__section">
       <p id="result">Result: <span id="result-text"></span></p>
 
@@ -207,21 +232,17 @@
         <p id="draw-score">Ties:</p>
       </div>
     </div>
-    
-    
 
-    <button class="reset__button" onclick="resetScore()">
-      Reset Score
-    </button>
-    
-    </button>
+    <button class="reset__button" onclick="resetScore()">Reset Score</button>
+
     <script>
       let score = JSON.parse(localStorage.getItem("score")) || {
         playerScore: 0,
         computerScore: 0,
         drawScore: 0,
       };
-      let result = '';
+
+      let result = "";
 
       updateScoreboard();
 
@@ -231,50 +252,21 @@
           choices[Math.floor(Math.random() * choices.length)];
 
         if (playerChoice === computerChoice) {
-          result = (`The opponent chose ${computerChoice}. It's a draw`);
+          result = `The opponent chose ${computerChoice}. It's a draw`;
           score.drawScore++;
         } else if (
           (playerChoice === "rock" && computerChoice === "scissors") ||
           (playerChoice === "paper" && computerChoice === "rock") ||
           (playerChoice === "scissors" && computerChoice === "paper")
         ) {
-          result = (`The opponent chose ${computerChoice}. You won!`);
+          result = `The opponent chose ${computerChoice}. You won!`;
           score.playerScore++;
         } else {
-          result = (`The opponent chose ${computerChoice}. You lost!`);
-         
+          result = `The opponent chose ${computerChoice}. You lost!`;
           score.computerScore++;
         }
 
-//const resultEl = document.getElementById("result-text");
-//resultEl.textContent = `${result}`;
-
-
-function typeResult(text) {
-  const el = document.getElementById("result-text");
-  el.textContent = ""; // очистить перед показом
-
-  let i = 0;
-
-  function type() {
-    if (i < text.length) {
-      el.textContent += text.charAt(i);
-      i++;
-      setTimeout(type, 12); // скорость "печати" в мс
-    }
-  }
-
-  type();
-}
-
-
-typeResult(result);
-
-
-/*// 🔄 Сброс анимации, чтобы она перезапустилась
-resultEl.classList.remove("slide-in");
-void resultEl.offsetWidth; // форсирует перерасчёт стилей
-resultEl.classList.add("slide-in");*/
+        typeResult(result);
         localStorage.setItem("score", JSON.stringify(score));
         updateScoreboard();
       }
@@ -292,30 +284,36 @@ resultEl.classList.add("slide-in");*/
       }
 
       function resetScore() {
-  score = {
-    playerScore: 0,
-    computerScore: 0,
-    drawScore: 0,
-  };
-  document.getElementById("result-text").textContent = ''; // сброс текста
-  localStorage.setItem("score", JSON.stringify(score));
-  updateScoreboard();
-  alert("Your score has been reset");
-}
+        score = { playerScore: 0, computerScore: 0, drawScore: 0 };
+        document.getElementById("result-text").textContent = "";
+        localStorage.setItem("score", JSON.stringify(score));
+        updateScoreboard();
+        alert("Your score has been reset");
+      }
 
-const rpsButtons = document.querySelectorAll('.rps__button');
+      function typeResult(text) {
+        const el = document.getElementById("result-text");
+        el.textContent = "";
+        let i = 0;
+        function type() {
+          if (i < text.length) {
+            el.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, 12);
+          }
+        }
+        type();
+      }
 
-rpsButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      // Отключить все кнопки
-      rpsButtons.forEach(btn => btn.disabled = true);
-
-      // Через 3 секунды включить снова
-      setTimeout(() => {
-        rpsButtons.forEach(btn => btn.disabled = false);
-      }, 800);
-    });
-  });
+      const rpsButtons = document.querySelectorAll(".rps__button");
+      rpsButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          rpsButtons.forEach((btn) => (btn.disabled = true));
+          setTimeout(() => {
+            rpsButtons.forEach((btn) => (btn.disabled = false));
+          }, 800);
+        });
+      });
     </script>
   </body>
 </html>
