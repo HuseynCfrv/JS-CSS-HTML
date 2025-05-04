@@ -1,0 +1,51 @@
+Dot notation — это способ доступа к свойствам (и методам) объекта в JavaScript (и других языках).
+Используется точка (.), чтобы обратиться к конкретному свойству объекта.
+
+Bracket notation — это способ обращения к свойствам объекта в JavaScript,
+ при котором имя свойства указывается как строка в квадратных скобках.
+
+
+
+Built-in objects: (JSON, localStorage)
+
+localStorage supports only String --- Need convert into JSON by using stringify.
+
+
+Objects:
+Object = group related values together.
+method - function saved inside an object.
+
+Destructuring:
+
+const object = {
+    message:"Hello",
+    price:799
+}
+
+const { message, price } = object // similar to const message = object.message
+
+
+const object2 = {
+    method: function function1() {
+
+    }
+
+    similar way is : method() {
+
+    }
+}
+
+
+
+
+
+DOM:
+DOM - another built-in object. DOCUMENT OBJECT MODEL
+DOM combines JS and HTML together. It gives JS full control of the webpage.
+
+The document object represents / models the webpage.
+
+document.querySelector() - lets us get any element from the page and put it inside JavaScript.
+
+innerHTML -  это свойство в JavaScript, которое используется для чтения или изменения HTML-содержимого элемента на веб-странице. Gives us control of the whole HTML section.
+document.getElementById("result").textContent = `Result: ${result}`;
